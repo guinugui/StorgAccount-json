@@ -1,0 +1,61 @@
+//IMPLEMENTAR UM RECUSO
+
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "stgName": {
+            "type": "String"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2023-01-01",
+            "name": "[parameters('stgName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "accessTier": "Hot"
+            }
+        }
+
+
+    ],
+    "outputs": {}
+
+}
+
+/* $schema QUE PEGA A URL QUE APONTA PARA UM ARQUIVO .JSON 
+QUE DESCREVE UM MODELO DE IMPLEMENTAÇÃO (deployment tamplate) ESPECIFICO NO AZURE.
+
+cotentVersion QUE NADA MAIS E O CONTROLE DE VERSAO, EXEMPLO : 
+CASO SUBA PARA UM REPOSITORIO VOCE CONSEGUE FAZER ESSE CONTROLE DE VERSAO POR AQUI TAMBEM.
+
+parameters E PARA ADICIONAR PARAMETROS, SAO VARIAVEIS QUE PERMITEM QUE VOCE PERSONALIZE A IMPLANTAÇÃO DE 
+RECURSOS DE INFRA. FORNECENDO VALORES ESPECIFICOS DURANTE O PROCESSO DE IMPLANTAÇÃO, TORNANDO O MODELO MAIS 
+FLEXIVEL E REUTILIZAVEL.
+
+functions NADA MAIS E QUE BLOCOS DE CODIGOS REUTILIZAVEIS QUE PODEM SER UTILIZADOS PARA FAZER TAREFAS ESPECIFICAS
+
+veriables  SAO USADAS PARA ARMAZENAR VALORES QUE PODEM SER REUTILIZADOS EM VARIAS PARTES DO MODELO
+
+resouces  REPRESENTAM OS COMPONENTES INDIVIDUAIS QUE VOCE DESEJA IMPLANTAR OU GERENCIAR NO Azure
+ex: VMS, DATA, REDES, ARMAZENAMENTO ... 
+
+outputs SAO USADAS PARA RETURNAR INFORMAÇÕES ESPECIFICAS APOS A CONCLUSAO BEM-SUCEDIDA DA IMPLANTAÇÃO
+EX: ENDEREÇO IP, URLs, CHAVES DE ACESSO, INDENTIFICADORES UNICOS.
+
+MODO DE EXECUTAR:
+ANTES DE FAZER O CODIGO, ABRA ACONTA NO AZURE MICROSOFT E NO TERMINAL DA IDE CONECT NO AZURE "Connect-AzAccount"
+
+
+
+*/
