@@ -1,36 +1,39 @@
-//IMPLEMENTAR UM RECUSO
-
-
+/*foi implementado um recurso de "storage account" (conta de armazenamento) no Azure é um serviço de armazenamento 
+na nuvem que fornece uma maneira altamente escalável e segura de armazenar dados.
+*/
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "stgName": {
-            "type": "String"
+    "parameters": { // passando um parametro 
+        "stgName": {// nome
+            "type": "String",// onde o tipo dele e string 
+            "minLength": 3,//o tamanho minimo e 3 caracteres
+            "maxLength":24// e no maximo 24 caracteres
         }
     },
     "functions": [],
     "variables": {},
-    "resources": [
+    "resources": [ //eu quero um recurso
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2023-01-01",
-            "name": "[parameters('stgName')]",
-            "location": "[resourceGroup().location]",
-            "kind": "StorageV2",
-            "sku": {
+            "type": "Microsoft.Storage/storageAccounts", // escolher o tipo de recurso em "type"
+            "apiVersion": "2023-01-01", // a versao da api, se quiser controlar versao por aqui
+            "name": "[parameters('stgName')]", /*nome da maquina que quer implentar o recurso, neste carro foi colocardo
+            um parametro com o nome da variavel stgName contendo todos os nomes de todas as maquinas que vao ser 
+            implementado o storageAccount
+            */
+            "location": "[resourceGroup().location]", /*refere-se à localização geográfica do seu grupo de 
+            recursos no qual irá implementar os recursos*/
+            "kind": "StorageV2", //tipo de storage que vai criar que e o storageV2
+            "sku": { // tipo de replicação, usamos a Standard_LRS que e de forma redundante dentro da mesma região 
                 "name": "Standard_LRS",
                 "tier": "Standard"
             },
-            "properties": {
+            "properties": { //
                 "accessTier": "Hot"
             }
         }
-
-
     ],
     "outputs": {}
-
 }
 
 /* $schema QUE PEGA A URL QUE APONTA PARA UM ARQUIVO .JSON 
@@ -55,6 +58,7 @@ EX: ENDEREÇO IP, URLs, CHAVES DE ACESSO, INDENTIFICADORES UNICOS.
 
 MODO DE EXECUTAR:
 ANTES DE FAZER O CODIGO, ABRA ACONTA NO AZURE MICROSOFT E NO TERMINAL DA IDE CONECT NO AZURE "Connect-AzAccount"
+
 
 
 
